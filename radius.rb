@@ -82,6 +82,10 @@ linenum = 1
 source_contents.each_line do |line|
   # we catch any issue that causes radius to fail and just print out the line
   # that it failed on.  not the best, but *shrug*
+  # Note, to debug a condition below simply:
+  #   puts " "*i +"."
+  #   puts line
+  #
   begin
     
     # state machine - resets each line
@@ -122,7 +126,6 @@ source_contents.each_line do |line|
 
       # are we in a quote? print, but also look for matching end quote
       if in_quote
-        ##print c
         buf << c
         x+=1
         if c == quote_char # second quotes
@@ -177,6 +180,7 @@ source_contents.each_line do |line|
         if c == '"' || c == "'"
           quote_char = c
           in_quote = true
+          in_operand = true
           buf << c
           # see if we are starting a line with a comment
         elsif (c == ';' || c == '*') && i == 0
