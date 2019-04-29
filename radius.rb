@@ -227,6 +227,12 @@ source_contents.each_line do |line|
         elsif in_operand
           buf << c
           x+=1
+	# if they have unhandled weirdness, just pass them through minus whitespace
+	else 
+      	  if !c.strip.empty?
+            buf << c
+            x+=1
+          end
         end
       end
     end
