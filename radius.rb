@@ -192,7 +192,7 @@ source_contents.each_line do |line|
         elsif c == ';' && !in_operand
           in_comment = true
           # protect against "negative" spacing
-          spaces = 1 > (comment_col_x-x) ? 1 : (comment_col_x-x)
+          spaces = 0 > (comment_col_x-x) ? 0 : (comment_col_x-x)
           buf << " "*spaces
 
           x+=comment_col_x-x
